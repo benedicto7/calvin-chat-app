@@ -1,0 +1,7 @@
+{
+  "name": "calvin-chat-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
