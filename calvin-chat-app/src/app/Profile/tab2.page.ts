@@ -45,7 +45,9 @@ export class Tab2Page {
     var imageUrl = image.webPath;
 
     // Can be set to the src of an image now
-    // imageElement.src = imageUrl;
+    // imageElement.src = imageUrl; // not working
   };
 }
 
+// TODO: set the name for the first time when user sign in
+// TODO: use local storage to set the next next time
