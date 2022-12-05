@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "cs336-finalproject": {
+      "hosting": {
+        "app": [
+          "calvinknightchats"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "cs336-finalproject"
+  }
+}

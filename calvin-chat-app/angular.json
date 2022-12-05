@@ -32,7 +32,10 @@
               },
               "src/manifest.webmanifest"
             ],
-            "styles": ["src/theme/variables.scss", "src/global.scss"],
+            "styles": [
+              "src/theme/variables.scss",
+              "src/global.scss"
+            ],
             "scripts": [],
             "serviceWorker": true,
             "ngswConfigPath": "ngsw-config.json"
@@ -115,7 +118,10 @@
               },
               "src/manifest.webmanifest"
             ],
-            "styles": ["src/theme/variables.scss", "src/global.scss"],
+            "styles": [
+              "src/theme/variables.scss",
+              "src/global.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -132,6 +138,16 @@
               "src/**/*.ts",
               "src/**/*.html"
             ]
+          }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "app:build:production",
+            "firebaseProject": "cs336-finalproject",
+            "firebaseHostingSite": "calvinknightchats"
           }
         }
       }
