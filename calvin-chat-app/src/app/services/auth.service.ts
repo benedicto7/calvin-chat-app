@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import firebase from 'firebase/compat/app';
 
-
 import 'firebase/auth';
 import 'firebase/firestore';
 

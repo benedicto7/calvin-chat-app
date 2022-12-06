@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content class="ion-padding" color="light">
-  <ion-img (click)="getImage()" id="profile-image" src="../../assets/image.jpg"></ion-img>
+  <ion-img (click)="getImage()" id="profile-image" [src]="imageElement"></ion-img>
 
   <hr color="tint">
 
@@ -37,9 +37,10 @@
   </ion-popover>
 </ion-content>
 
-<!-- TODO: capacitor camera for gallery -->
 <!-- TODO: add color picker -->
 
 <!-- camera icon -->
 <!-- show max input -->
 <!-- alert icon -->
+<!-- image circle style -->
+<!-- make image size bigger -->

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
-import { Camera, CameraResultType } from '@capacitor/camera';
+import { Camera, CameraDirection, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 
 interface FirestoreChat {
   docId?: string; // auth
@@ -15,10 +16,17 @@ interface FirestoreChat {
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
-  constructor(private popoverController: PopoverController) { }
+  constructor(
+    private popoverController: PopoverController,
+    private afStorage: AngularFireStorage
+  ) { }
+
+  @ViewChild('profile-image') imageElement: string; //HTMLImageElement
 
   public name: string = "Ben";
   public new_name: string = this.name;
+
+  private PHOTO_STORAGE: string = 'photos';
 
   // Closes the popover when user clicks button or enter
   async editName(action: boolean): Promise<void> {
@@ -33,20 +41,37 @@ export class Tab2Page {
 
   getImage = async () => {
     const image = await Camera.getPhoto({
-      quality: 90,
+      quality: 100,
       allowEditing: true,
-      resultType: CameraResultType.Uri
+      resultType: CameraResultType.Uri,
+      direction: CameraDirection.Front,
+      source: CameraSource.Camera,
+      // width: 100,
+      // height: 100,
     });
+
+    // await this.saveImage(image);
 
     // image.webPath will contain a path that can be set as an image src.
     // You can access the original file using image.path, which can be
     // passed to the Filesystem API to read the raw data of the image,
     // if desired (or pass resultType: CameraResultType.Base64 to getPhoto)
-    var imageUrl = image.webPath;
+    const imageUrl = image.webPath;
 
     // Can be set to the src of an image now
-    // imageElement.src = imageUrl; // not working
+    // this.imageElement.src = imageUrl!; // Confirms imageUrl will not be undefined
+    this.imageElement = imageUrl!;
+
   };
+
+  // Uploads the image to cloud storage
+  private async saveImage(photo: Photo) {
+    const response = await fetch(photo.webPath!);
+    const blob = await response.blob();
+    const filename = new Date().getTime() + ".jpeg";
+    const storageRef = this.afStorage.ref(filename);
+    storageRef.put(blob);
+  }
 }
 
 // TODO: set the name for the first time when user sign in

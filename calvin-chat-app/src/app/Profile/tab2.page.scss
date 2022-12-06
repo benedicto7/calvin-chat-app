@@ -1,17 +1,23 @@
 ion-content {
 
   #profile-image {
-    width: 100%;
-    // height: 57%;
+    width: 100%; // 77%
+    height: 55%; // 41%
     border-radius: 50%;
     border-style: solid;
-    border-width: thick;
+    border-width: thin;
     border-color: #141414;
+    background-color: #141414;
     margin-bottom: 5%;
+    // display: block;
+    // margin-left: auto;
+    // margin-right: auto;
   }
 
   #profile-image::part(image) {
     border-radius: 50%;
+    width: 100%;
+    height: 100%;
   }
 
   #name-card {
