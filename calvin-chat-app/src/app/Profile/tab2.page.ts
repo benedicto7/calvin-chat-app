@@ -27,6 +27,7 @@ export class Tab2Page {
 
   public name: string = "Ben";
   public new_name: string = this.name;
+  public color: string = "";
 
   // private PHOTO_STORAGE: string = 'photos';
 
