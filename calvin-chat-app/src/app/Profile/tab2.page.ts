@@ -2,6 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { Camera, CameraDirection, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+// import { Filesystem, Directory } from '@capacitor/filesystem';
+// import { Preferences } from '@capacitor/preferences';
 
 interface FirestoreChat {
   docId?: string; // auth
@@ -66,11 +68,27 @@ export class Tab2Page {
 
   // Uploads the image to cloud storage
   private async saveImage(photo: Photo) {
-    const response = await fetch(photo.webPath!);
-    const blob = await response.blob();
-    const filename = new Date().getTime() + ".jpeg";
-    const storageRef = this.afStorage.ref(filename);
-    storageRef.put(blob);
+    // const response = await fetch(photo.webPath!);
+    // const blob = await response.blob();
+    // const filename = new Date().getTime() + ".jpeg";
+    // const storageRef = this.afStorage.ref(filename);
+    // storageRef.put(blob);
+
+    // // Convert photo to base64 format, required by Filesystem API to save
+    // const base64Data = await this.readAsBase64(photo);
+    // // Write the file to the data directory
+    // const fileName = new Date().getTime() + '.jpeg';
+    // const savedFile = await FileSystem.writeFile({
+    //   path: fileName,
+    //   data: base64Data,
+    //   directory: Directory.Data
+    // });
+    // // Use webPath to display the new image instead of base64 since it's
+    // // already loaded into memory
+    // return {
+    //   filepath: fileName,
+    //   webviewPath: photo.webPath
+    // };
   }
 }
 
