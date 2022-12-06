@@ -1,0 +1,47 @@
+ion-content {
+
+  #profile-image {
+    width: 100%; // 77%
+    height: 55%; // 41%
+    border-radius: 50%;
+    border-style: solid;
+    border-width: thin;
+    border-color: #141414;
+    background-color: #141414;
+    margin-bottom: 5%;
+    // display: block;
+    // margin-left: auto;
+    // margin-right: auto;
+  }
+
+  #profile-image::part(image) {
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+  }
+
+  #name-card {
+    display: flex;
+    justify-content: space-between;
+
+    #name {
+      font-weight: lighter;
+      font-size: medium;
+    }
+
+    #username {
+      font-weight: bold;
+      font-size: large;
+    }
+  }
+}
+
+#message-input {
+  border-bottom: thin solid #2dd36f;
+}
+
+.edit-name {
+  display: flex;
+  justify-content: center;
+
+}

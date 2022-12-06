@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-title color="dark">
+      Profile
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" color="light">
+  <ion-img (click)="getImage()" id="profile-image" [src]="imageElement"></ion-img>
+
+  <hr color="tint">
+
+  <div id="name-card">
+    <ion-icon color="dark" class="person-icon" slot="start" name="person-sharp"></ion-icon>
+    <div>
+      <span id="name">Name: </span>
+      <span id="username">{{name}}</span>
+    </div>
+    <ion-icon color="success" class="pencil-icon" slot="end" name="pencil-sharp"></ion-icon>
+  </div>
+
+  <hr color="tint">
+
+  <!-- Edit Name -->
+  <ion-popover inputmode="text" side="bottom" trigger="name-card" alignment="center">
+    <ng-template>
+      <ion-content class="ion-padding" color="light">
+        <p>Change Name</p>
+        <ion-input color="dark" type="text" id="message-input" [(ngModel)]="new_name" (keyup.enter)="editName(true)" maxlength="13"></ion-input>
+        <div class="edit-name">
+          <ion-button color="success" (click)="editName(false)">Cancel</ion-button>
+          <ion-button color="success" (click)="editName(true)">Save</ion-button>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-popover>
+</ion-content>
+
+<!-- TODO: add color picker -->
+
+<!-- camera icon -->
+<!-- show max input -->
+<!-- alert icon -->
+<!-- image circle style -->
+<!-- make image size bigger -->

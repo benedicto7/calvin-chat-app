@@ -1,0 +1,79 @@
+<!-- Menu bar -->
+<ion-menu type="reveal" content-id="main-content">
+  <ion-header>
+    <ion-toolbar color="light">
+      <ion-title color="dark">Calvin Courses</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="ion-padding" color="light">
+    <ion-menu-toggle>
+      <ion-button color="dark" expand="block" [fill]="general_button" (click)="setCourse('general')">
+        <ion-icon slot="start" name="chevron-forward-sharp" *ngIf="general_icon"></ion-icon>
+        General
+      </ion-button>
+      <ion-button color="dark" expand="block" [fill]="cs108_button" (click)="setCourse('cs108')">
+        <ion-icon slot="start" name="chevron-forward-sharp" *ngIf="cs108_icon"></ion-icon>
+        CS108
+      </ion-button>
+      <ion-button color="dark" expand="block" [fill]="cs112_button" (click)="setCourse('cs112')">
+        <ion-icon slot="start" name="chevron-forward-sharp" *ngIf="cs112_icon"></ion-icon>
+        CS112
+      </ion-button>
+      <ion-button color="dark" expand="block" [fill]="cs212_button" (click)="setCourse('cs212')">
+        <ion-icon slot="start" name="chevron-forward-sharp" *ngIf="cs212_icon"></ion-icon>
+        CS212
+      </ion-button>
+      <ion-button color="dark" expand="block" [fill]="cs262_button" (click)="setCourse('cs262')">
+        <ion-icon slot="start" name="chevron-forward-sharp" *ngIf="cs262_icon"></ion-icon>
+        CS262
+      </ion-button>
+      <ion-button color="dark" expand="block" [fill]="cs214_button" (click)="setCourse('cs214')">
+        <ion-icon slot="start" name="chevron-forward-sharp" *ngIf="cs214_icon"></ion-icon>
+        CS214
+      </ion-button>
+      <ion-button color="dark" expand="block" [fill]="cs232_button" (click)="setCourse('cs232')">
+        <ion-icon slot="start" name="chevron-forward-sharp" *ngIf="cs232_icon"></ion-icon>
+        CS232
+      </ion-button>
+      <ion-button color="dark" expand="block" [fill]="cs336_button" (click)="setCourse('cs336')">
+        <ion-icon slot="start" name="chevron-forward-sharp" *ngIf="cs336_icon"></ion-icon>
+        CS336
+      </ion-button>
+    </ion-menu-toggle>
+  </ion-content>
+</ion-menu>
+
+<!-- Home tab -->
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar color="light">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title color="dark" id="title">#{{course | uppercase}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- Chats -->
+  <ion-content color="light" class="ion-padding" id="myContent" [scrollEvents]="true">
+    <div class="chat-box" *ngFor="let chat of chats">
+      <div class="chat">
+        <ion-avatar>
+          <ion-img src="../../assets/image.jpg" alt="nothing" id="profile-image"></ion-img>
+        </ion-avatar>
+        <p id="name">{{chat.name}}</p>
+        <p id="date">{{chat.timestamp.toDate() | date: "d/MM/yyyy H:mm"}}</p>
+      </div>
+      <p id="message" >{{chat.message}}</p>
+    </div>
+  </ion-content>
+
+  <!-- Message -->
+  <ion-footer>
+    <ion-input color="medium" [placeholder]="message_placeholder" type="text" id="message-input" [(ngModel)]="message" (keyup.enter)="createChat()"></ion-input>
+  </ion-footer>
+</div>
+
+<!-- TODO: auto scroll -->
+<!-- ion-footer color -->

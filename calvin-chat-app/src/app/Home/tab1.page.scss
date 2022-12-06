@@ -1,0 +1,76 @@
+// * {
+//   border-color: red;
+//   border-style: solid;
+//   border-width: thin;
+// }
+
+ion-menu {
+  --max-width: 71;
+
+  ion-title {
+    text-align: center;
+    font-weight: bolder;
+  }
+}
+
+.ion-page {
+  #title {
+    font-weight: bolder;
+  }
+
+  .chat-box {
+
+    .chat {
+      display: flex;
+      justify-content: space-between;
+
+      /* Tag */
+      #profile-image {
+        // width: 20%;
+        // height: 20%;
+        border-radius: 50%;
+        border-color: #141414;
+        border-style: solid;
+        border-width: thin;
+      }
+
+      /* Image */
+      #profile-image::part(image) {
+        border-radius: 50%;
+      }
+
+      #name {
+        font-weight: bold;
+        font-size: small;
+        margin-right: 20%;
+        align-self: center;
+      }
+
+      #date {
+        font-weight: lighter;
+        font-size: xx-small;
+        align-self: center;
+      }
+    }
+
+    #message {
+      font-weight: lighter;
+      font-size: small;
+    }
+  }
+
+  ion-footer {
+    background-color: #222428;
+    padding-left: 4%;
+    padding-right: 4%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+
+    #message-input {
+      background-color: #141414;
+      border-radius: 7px;
+      display: inline;
+      font-size: medium;
+    }
+  }
+}
