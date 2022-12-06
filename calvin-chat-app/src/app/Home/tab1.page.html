@@ -62,7 +62,7 @@
         <ion-avatar>
           <ion-img src="../../assets/image.jpg" alt="nothing" id="profile-image"></ion-img>
         </ion-avatar>
-        <p id="name">{{chat.name}}</p>
+        <p id="name" [style.color]="chat.color">{{chat.name}}</p>
         <p id="date">{{chat.timestamp.toDate() | date: "d/MM/yyyy H:mm"}}</p>
       </div>
       <p id="message" >{{chat.message}}</p>

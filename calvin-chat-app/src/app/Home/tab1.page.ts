@@ -47,7 +47,7 @@ export class Tab1Page implements OnInit {
   // User
   public name: string = "";
   public message: string = "";
-  public color: string = "white";
+  public color: string = "";
 
   // Button state
   public general_button: string = "solid";
@@ -316,3 +316,5 @@ export class Tab1Page implements OnInit {
   }
 
 }
+
+// TODO: change the color of name

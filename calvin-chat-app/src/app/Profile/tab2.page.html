@@ -15,9 +15,17 @@
     <ion-icon color="dark" class="person-icon" slot="start" name="person-sharp"></ion-icon>
     <div>
       <span id="name">Name: </span>
-      <span id="username">{{name}}</span>
+      <span id="username" [style.color]="color">{{name}}</span>
     </div>
     <ion-icon color="success" class="pencil-icon" slot="end" name="pencil-sharp"></ion-icon>
+  </div>
+
+  <hr color="tint">
+
+  <!-- Edit Name Color -->
+  <div>
+    <p class="color">Change Name Color</p>
+    <input class="color-input" [(colorPicker)]="color" [style.background]="color">
   </div>
 
   <hr color="tint">
@@ -36,8 +44,6 @@
     </ng-template>
   </ion-popover>
 </ion-content>
-
-<!-- TODO: add color picker -->
 
 <!-- camera icon -->
 <!-- show max input -->

@@ -2,7 +2,7 @@ ion-content {
 
   #profile-image {
     width: 100%; // 77%
-    height: 55%; // 41%
+    height: 56%; // 41%
     border-radius: 50%;
     border-style: solid;
     border-width: thin;
@@ -33,6 +33,17 @@ ion-content {
       font-weight: bold;
       font-size: large;
     }
+  }
+
+  .color {
+    text-align: center;
+  }
+
+  .color-input {
+    // width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
