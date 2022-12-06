@@ -2,8 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { Camera, CameraDirection, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-// import { Filesystem, Directory } from '@capacitor/filesystem';
-// import { Preferences } from '@capacitor/preferences';
+import { Filesystem, Directory } from '@capacitor/filesystem';
+import { Preferences } from '@capacitor/preferences';
 
 interface FirestoreChat {
   docId?: string; // auth
@@ -28,7 +28,7 @@ export class Tab2Page {
   public name: string = "Ben";
   public new_name: string = this.name;
 
-  private PHOTO_STORAGE: string = 'photos';
+  // private PHOTO_STORAGE: string = 'photos';
 
   // Closes the popover when user clicks button or enter
   async editName(action: boolean): Promise<void> {
@@ -64,33 +64,60 @@ export class Tab2Page {
     // this.imageElement.src = imageUrl!; // Confirms imageUrl will not be undefined
     this.imageElement = imageUrl!;
 
+    /*     Preferences.set({
+          key: this.PHOTO_STORAGE,
+          value: JSON.stringify(this.imageElement),
+        }); */
   };
 
   // Uploads the image to cloud storage
   private async saveImage(photo: Photo) {
-    // const response = await fetch(photo.webPath!);
-    // const blob = await response.blob();
-    // const filename = new Date().getTime() + ".jpeg";
-    // const storageRef = this.afStorage.ref(filename);
-    // storageRef.put(blob);
+    // Simple version: uploads image immediately to cloud storage
+    const response = await fetch(photo.webPath!);
+    const blob = await response.blob();
+    const filename = new Date().getTime() + ".jpeg";
+    const storageRef = this.afStorage.ref(filename);
+    storageRef.put(blob);
 
-    // // Convert photo to base64 format, required by Filesystem API to save
-    // const base64Data = await this.readAsBase64(photo);
-    // // Write the file to the data directory
-    // const fileName = new Date().getTime() + '.jpeg';
-    // const savedFile = await FileSystem.writeFile({
-    //   path: fileName,
-    //   data: base64Data,
-    //   directory: Directory.Data
-    // });
-    // // Use webPath to display the new image instead of base64 since it's
-    // // already loaded into memory
-    // return {
-    //   filepath: fileName,
-    //   webviewPath: photo.webPath
-    // };
+
+    /*     // Convert photo to base64 format, required by Filesystem API to save
+        const base64Data = await this.readAsBase64(photo);
+
+        // Write the file to the data directory
+        const fileName = new Date().getTime() + '.jpeg';
+        const savedFile = await Filesystem.writeFile({
+          path: fileName,
+          data: base64Data,
+          directory: Directory.Data
+        });
+
+        // Use webPath to display the new image instead of base64 since it's
+        // already loaded into memory
+        return {
+          filepath: fileName,
+          webviewPath: photo.webPath
+        }; */
   }
+
+  /*   private async readAsBase64(photo: Photo) {
+      // Fetch the photo, read as a blob, then convert to base64 format
+      const response = await fetch(photo.webPath!);
+      const blob = await response.blob();
+
+      return await this.convertBlobToBase64(blob) as string;
+    }
+
+    private convertBlobToBase64 = (blob: Blob) => new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onerror = reject;
+      reader.onload = () => {
+        resolve(reader.result);
+      };
+      reader.readAsDataURL(blob);
+    }); */
 }
 
-// TODO: set the name for the first time when user sign in
-// TODO: use local storage to set the next next time
+// TODO: save image to the user that is logged in instead
+// TODO: set the name for the first time when user sign in as the one they input in sign up
+
+// TODO: use local storage to skip log in
