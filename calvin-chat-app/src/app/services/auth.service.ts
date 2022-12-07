@@ -4,6 +4,7 @@ import firebase from 'firebase/compat/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ export class AuthService {
 
   constructor(
     private router: Router,
+    private toastCtrl: ToastController
   ) { }
 
   loginUser(email: string, password: string): Promise<firebase.auth.UserCredential> {
@@ -26,10 +28,16 @@ export class AuthService {
     return firebase.auth().sendPasswordResetEmail(email);
   }
 
-  logoutUser(): Promise<void> {
-    alert("user logged out");
-
+  async logoutUser(): Promise<void> {
     this.router.navigateByUrl('login');
+
+    const toast = await this.toastCtrl.create({
+      message: `Account has been logout.`,
+      duration: 1000,
+    });
+
+    await toast.present();
+
     return firebase.auth().signOut();
   }
 
