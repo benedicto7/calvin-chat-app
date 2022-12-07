@@ -3,13 +3,16 @@ import firebase from 'firebase/compat/app';
 
 import 'firebase/auth';
 import 'firebase/firestore';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor() { }
+  constructor(
+    private router: Router,
+  ) { }
 
   loginUser(email: string, password: string): Promise<firebase.auth.UserCredential> {
     return firebase.auth().signInWithEmailAndPassword(email, password);
@@ -24,10 +27,13 @@ export class AuthService {
   }
 
   logoutUser(): Promise<void> {
+    alert("user logged out");
+
+    this.router.navigateByUrl('login');
     return firebase.auth().signOut();
   }
 
-  // getCurrentUser(): string {
-  //   return firebase.auth().currentUser.email; // not working
-  // }
+  getCurrentUser(): string | null {
+    return firebase.auth().currentUser!.email; // confirms that currentUser is not null
+  }
 }

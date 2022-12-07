@@ -1,3 +1,30 @@
-.hello {
-  color: white;
+ion-content {
+  text-align: center;
+  align-self: center;
+
+  .title {
+    color: gold;
+  }
+
+  #password-info {
+    display: block;
+    text-align: left;
+    font-size: small;
+    font-weight: lighter;
+  }
+
+  #description {
+    font-size: small;
+    font-weight: lighter;
+  }
+
+  #login {
+    width: 100%;
+  }
+
+  #create-account {}
+
+  #reset-password {
+    width: max-content;
+  }
 }
