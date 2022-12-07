@@ -4,6 +4,7 @@ import { Camera, CameraDirection, CameraResultType, CameraSource, Photo } from '
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Filesystem, Directory } from '@capacitor/filesystem';
 import { Preferences } from '@capacitor/preferences';
+import { AuthService } from '../services/auth.service';
 
 interface FirestoreChat {
   docId?: string; // auth
@@ -20,7 +21,8 @@ interface FirestoreChat {
 export class Tab2Page {
   constructor(
     private popoverController: PopoverController,
-    private afStorage: AngularFireStorage
+    private afStorage: AngularFireStorage,
+    private auth: AuthService,
   ) { }
 
   @ViewChild('profile-image') imageElement: string; //HTMLImageElement
@@ -115,6 +117,11 @@ export class Tab2Page {
       };
       reader.readAsDataURL(blob);
     }); */
+
+  // Lets user logs out from the application
+  logout(): void {
+    this.auth.logoutUser();
+  }
 }
 
 // TODO: save image to the user that is logged in instead

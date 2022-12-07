@@ -132,7 +132,12 @@ export class LoginPage implements OnInit {
     // this.storage.set('email', this.user.email);
     // this.storage.set('password', this.user.password);
   }
+
+  public reset: boolean = true;
+
+  changeResetButton(): void {
+    this.reset = false;
+  }
 }
 
-// TODO: go to tabs page
 // TODO: log out

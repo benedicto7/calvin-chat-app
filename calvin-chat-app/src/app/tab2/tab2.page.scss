@@ -1,3 +1,10 @@
+ion-header {
+  #logout-button {
+    width: max-content;
+    margin-right: 4%;
+  }
+}
+
 ion-content {
 
   #profile-image {
@@ -36,23 +43,28 @@ ion-content {
   }
 
   .color {
-    text-align: center;
+    #color-name {
+      text-align: center;
+      // font-size: small;
+      // font-weight: bold;
+    }
+
+    #color-input {
+      // width: 100%;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 
-  .color-input {
-    // width: 100%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+  ion-popover {
+    #message-input {
+      border-bottom: thin solid #2dd36f;
+    }
+
+    .edit-name {
+      display: flex;
+      justify-content: center;
+    }
   }
-}
-
-#message-input {
-  border-bottom: thin solid #2dd36f;
-}
-
-.edit-name {
-  display: flex;
-  justify-content: center;
-
 }

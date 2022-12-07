@@ -16,34 +16,31 @@
       <ion-label position="stacked">Name:</ion-label>
       <ion-input maxlength="13" placeholder="Enter name" #fName="ngModel" type="text" name="text" [(ngModel)]="user.name" required></ion-input>
     </ion-item>
-
     <ion-item color="light">
       <ion-label position="stacked">Email:</ion-label>
-      <ion-input placeholder="Enter email" #fName="ngModel" type="email" name="email" [(ngModel)]="user.email" required></ion-input>
+      <ion-input (click)="changeResetButton()" placeholder="Enter email" #fName="ngModel" type="email" name="email" [(ngModel)]="user.email" required></ion-input>
     </ion-item>
-
     <ion-item color="light">
       <ion-label position="stacked">Password:</ion-label>
       <ion-input placeholder="Enter password" type="password" name="password" [(ngModel)]="user.password" required minlength="6">
       </ion-input>
       <ion-note slot="helper">Valid password</ion-note>
       <ion-note slot="error">Invalid password</ion-note>
-      <ion-text id="password-info">
-        (At least 6 characters. Do not use your real email account password)
-      </ion-text>
     </ion-item>
+    <ion-text id="password-info" class="ion-padding">
+      At least 6 characters. Do not use your real email account password.
+    </ion-text>
 
     <hr color="tint">
 
     <ion-item color="light">
-      <ion-button color="success" type="submit" [disabled]="f.valid">Log in</ion-button>
-
+      <ion-button id="login" color="success" type="submit" [disabled]="f.valid">Log in</ion-button>
       <!-- Only enables when the user inputs all three value -->
-      <ion-button slot="end" color="success" [disabled]="!f.valid" (click)="createAccount()">Create an account</ion-button>
+      <ion-button id="create-account" slot="end" color="success" [disabled]="!f.valid" (click)="createAccount()">Create an account</ion-button>
     </ion-item>
 
     <ion-item color="light">
-      <ion-button color="warning" class="reset-password" slot="start" detail="false" button (click)="resetPassword()">Reset password</ion-button>
+      <ion-button [disabled]="reset" id="reset-password" color="warning" class="reset-password" slot="start" detail="false" button (click)="resetPassword()">Reset password</ion-button>
     </ion-item>
   </form>
 

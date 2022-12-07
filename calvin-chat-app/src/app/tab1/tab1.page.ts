@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Timestamp } from 'firebase/firestore';
 import firebase from 'firebase/compat/app'
 import { IonContent } from '@ionic/angular';
+import { AuthService } from '../services/auth.service';
 
 /*
 TODO: authentication
@@ -314,7 +315,6 @@ export class Tab1Page implements OnInit {
 
     this.changeCourse();
   }
-
 }
 
 // TODO: change the color of name

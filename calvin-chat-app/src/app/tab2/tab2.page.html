@@ -3,6 +3,7 @@
     <ion-title color="dark">
       Profile
     </ion-title>
+    <ion-button id="logout-button" color="danger" size="small" (click)="logout()" slot="end">Logout</ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -23,9 +24,9 @@
   <hr color="tint">
 
   <!-- Edit Name Color -->
-  <div>
-    <p class="color">Change Name Color</p>
-    <input class="color-input" [(colorPicker)]="color" [style.background]="color">
+  <div class="color">
+    <p id="color-name">Change Name Color</p>
+    <input id="color-input" [(colorPicker)]="color" [style.background]="color">
   </div>
 
   <hr color="tint">

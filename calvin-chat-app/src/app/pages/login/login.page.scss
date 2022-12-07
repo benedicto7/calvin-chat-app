@@ -7,12 +7,24 @@ ion-content {
   }
 
   #password-info {
-    font-size: medium;
+    display: block;
+    text-align: left;
+    font-size: small;
     font-weight: lighter;
   }
 
   #description {
     font-size: small;
     font-weight: lighter;
+  }
+
+  #login {
+    width: 100%;
+  }
+
+  #create-account {}
+
+  #reset-password {
+    width: max-content;
   }
 }
