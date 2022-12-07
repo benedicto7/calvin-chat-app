@@ -1,3 +1,18 @@
-.hello {
-  color: white;
+ion-content {
+  text-align: center;
+  align-self: center;
+
+  .title {
+    color: gold;
+  }
+
+  #password-info {
+    font-size: medium;
+    font-weight: lighter;
+  }
+
+  #description {
+    font-size: small;
+    font-weight: lighter;
+  }
 }

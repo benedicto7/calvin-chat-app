@@ -61,9 +61,8 @@ export class Tab2Page {
     // if desired (or pass resultType: CameraResultType.Base64 to getPhoto)
     const imageUrl = image.webPath;
 
-    // Can be set to the src of an image now
-    // this.imageElement.src = imageUrl!; // Confirms imageUrl will not be undefined
-    this.imageElement = imageUrl!;
+    // Sets the imageElement src according to the user image
+    this.imageElement = imageUrl!; // Confirms imageUrl will not be undefined
 
     /*     Preferences.set({
           key: this.PHOTO_STORAGE,

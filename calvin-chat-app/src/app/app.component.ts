@@ -9,10 +9,10 @@ import { environment } from 'src/environments/environment';
 })
 export class AppComponent {
   constructor() {
-    // this.initializeApp();
+    this.initializeApp();
   }
 
-  // initializeApp() {
-  //   firebase.initializeApp(environment.firebase);
-  // }
+  initializeApp() {
+    firebase.initializeApp(environment.firebase);
+  }
 }
