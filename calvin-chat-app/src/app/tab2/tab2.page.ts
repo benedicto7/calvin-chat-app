@@ -25,13 +25,11 @@ export class Tab2Page {
     private auth: AuthService,
   ) { }
 
-  @ViewChild('profile-image') imageElement: string; //HTMLImageElement
+  @ViewChild('profile-image') imageElement: string; // or HTMLImageElement for this.imageElement.src
 
   public name: string = "Ben";
   public new_name: string = this.name;
   public color: string = "";
-
-  // private PHOTO_STORAGE: string = 'photos';
 
   // Closes the popover when user clicks button or enter
   async editName(action: boolean): Promise<void> {
@@ -44,6 +42,7 @@ export class Tab2Page {
     }
   }
 
+  // Opens the camera when user clicks their images
   getImage = async () => {
     const image = await Camera.getPhoto({
       quality: 100,
@@ -55,8 +54,6 @@ export class Tab2Page {
       // height: 100,
     });
 
-    // await this.saveImage(image);
-
     // image.webPath will contain a path that can be set as an image src.
     // You can access the original file using image.path, which can be
     // passed to the Filesystem API to read the raw data of the image,
@@ -65,6 +62,8 @@ export class Tab2Page {
 
     // Sets the imageElement src according to the user image
     this.imageElement = imageUrl!; // Confirms imageUrl will not be undefined
+
+    // await this.saveImage(image);
 
     /*     Preferences.set({
           key: this.PHOTO_STORAGE,
