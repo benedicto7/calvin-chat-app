@@ -31,12 +31,13 @@ export class LoginPage implements OnInit {
     // this.user.password = (await this.storage.get('password')) || '';
   }
 
+  public reset: boolean = true;
   public loading: HTMLIonLoadingElement;
 
   public user: User = {
-    name: '',
-    email: '',
-    password: '',
+    name: "",
+    email: "",
+    password: "",
   };
 
   nameCounterFormatter(inputLength: number, maxLength: number) {
@@ -54,7 +55,7 @@ export class LoginPage implements OnInit {
     try {
       await this.authSvc.loginUser(this.user.email, this.user.password);
 
-      this.saveUserInfo();
+      // this.saveUserInfo();
       this.loading.dismiss();
 
       // Go to the tabs page
@@ -76,9 +77,9 @@ export class LoginPage implements OnInit {
 
   async createAccount(): Promise<void> {
     try {
-      await this.authSvc.signupUser(this.user.email, this.user.password);
+      await this.authSvc.signupUser(this.user.name, this.user.email, this.user.password);
 
-      this.saveUserInfo();
+      // this.saveUserInfo();
 
       const toast = await this.toastCtrl.create({
         message: `Account has been created.`,
@@ -125,19 +126,18 @@ export class LoginPage implements OnInit {
     }
   }
 
-  // Saves the user info when they log in or create a new account.
-  // So they do not have to log in back.
-  private saveUserInfo() {
-    // this.storage.set('userName', this.user.userName);
-    // this.storage.set('email', this.user.email);
-    // this.storage.set('password', this.user.password);
-  }
+  /*
+    // Saves the user info when they log in or create a new account.
+    // So they do not have to log in back.
+    private saveUserInfo() {
+      this.storage.set('userName', this.user.userName);
+      this.storage.set('email', this.user.email);
+      this.storage.set('password', this.user.password);
+    }
+  */
 
-  public reset: boolean = true;
-
+  // Enable the reset button when the user click on the email input
   changeResetButton(): void {
     this.reset = false;
   }
 }
-
-// TODO: log out
