@@ -5,18 +5,16 @@ import firebase from 'firebase/compat/app'
 import { IonContent } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 
-/*
-TODO: authentication
-TODO: CRUD
-*/
 
-interface FirestoreChat {
-  docId?: string; // auth
-  name?: string; // auth
-  message: string; // chat
+// TODO: Set color
+
+interface Chat {
   timestamp: firebase.firestore.Timestamp; // chat
+  message: string; // chat
+  name: string; // auth
+  imageUrl: string; // auth
   color?: string; // auth
-  image?: string; // auth
+  docId?: string; // auth
 }
 
 @Component({
@@ -29,8 +27,8 @@ export class Tab1Page implements OnInit {
   // Initial homepage
   constructor(private db: AngularFirestore) {
     // Get all the documents inside the general collection to display the correct chat section
-    const collectionDatabase = db.collection<FirestoreChat>("/general", (ref) => ref.orderBy('timestamp'));
-    collectionDatabase.valueChanges().subscribe((result) => { // {idField: 'docId'}
+    const collectionDatabase = this.db.collection<Chat>("/general", (ref) => ref.orderBy('timestamp'));
+    collectionDatabase.valueChanges().subscribe((result) => { // valueChanges({idField: 'docId'})
       if (result) {
         // Stores all the chat results in an array to be displayed
         this.chats = result;
@@ -41,14 +39,20 @@ export class Tab1Page implements OnInit {
     // this.scrollToBottom();
   }
 
-  // Home state
-  public chats: FirestoreChat[] = [];
+  // To scroll to the bottom
+  @ViewChild(IonContent, { read: IonContent, static: false }) myContent: IonContent;
+
+  // Home tab
+  public chats: Chat[] = [];
   public course: string = "general";
 
-  // User
+  // Users variable
   public name: string = "";
   public message: string = "";
   public color: string = "";
+  public imageUrl: string = "";
+
+  public message_placeholder: string = "Message #GENERAL";
 
   // Button state
   public general_button: string = "solid";
@@ -70,25 +74,21 @@ export class Tab1Page implements OnInit {
   public cs232_icon: boolean = false;
   public cs336_icon: boolean = false;
 
-  // Message Input
-  public message_placeholder: string = "Message #GENERAL";
+  ngOnInit() {
+    this.scrollToBottom();
+  }
 
-  @ViewChild(IonContent, { read: IonContent, static: false }) myContent: IonContent;
-
+  // TODO: Scroll the chat to the bottom
   scrollToBottom() {
     setTimeout(() => {
       this.myContent.scrollToBottom(300);
     }, 1000);
   }
 
-  ngOnInit() {
-    this.scrollToBottom();
-  }
-
-  // Change what chats to display
-  changeCourse() {
+  // Select which course is displayed according to chat collection
+  selectCourse() {
     // Get all the documents inside the selected collection to display the correct chat section
-    const collectionDatabase = this.db.collection<FirestoreChat>(`/${this.course}`, (ref) => ref.orderBy('timestamp'));
+    const collectionDatabase = this.db.collection<Chat>(`/${this.course}`, (ref) => ref.orderBy('timestamp'));
     collectionDatabase.valueChanges().subscribe((result) => { // {idField: 'docId'}
       if (result) {
         // Stores all the chat results in an array to be displayed
@@ -97,34 +97,30 @@ export class Tab1Page implements OnInit {
     })
   }
 
-  // Create
+  // Create a new chat message
   async createChat(): Promise<void> {
     // When user has at least typed a character
     if (this.message.length > 0) {
       // Data object
-      const data: FirestoreChat = {
+      const data: Chat = {
+        timestamp: Timestamp.now(),
         name: this.name,
         message: this.message,
-        timestamp: Timestamp.now(),
-        color: this.color
+        imageUrl: this.imageUrl,
+        color: this.color,
       };
 
       // Add data object into the selected collection with a unique key document
-      await this.db.collection(this.course).add(data);
+      await this.db.collection<Chat>(this.course).add(data);
 
       // Resets the message display
       this.message = "";
     }
   }
 
-  // Delete
+  // TODO: Delete the chat message
   async deleteChat(): Promise<void> {
     await this.db.doc('/cs336-chat').delete();
-  }
-
-  // Update
-  async updateChat(): Promise<void> {
-
   }
 
   setCourse(course: string): void {
@@ -313,8 +309,7 @@ export class Tab1Page implements OnInit {
       this.cs336_icon = true;
     }
 
-    this.changeCourse();
+    // Select which course to be displayed
+    this.selectCourse();
   }
 }
-
-// TODO: change the color of name

@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content class="ion-padding" color="light">
-  <ion-img (click)="getImage()" id="profile-image" [src]="imageElement"></ion-img>
+  <ion-img (click)="changeImage()" id="profile-image" [src]="imageUrl"></ion-img>
 
   <hr color="tint">
 
@@ -23,7 +23,7 @@
 
   <hr color="tint">
 
-  <!-- Edit Name Color -->
+  <!-- Edit Name Color @Input? -->
   <div class="color">
     <p id="color-name">Change Name Color</p>
     <input id="color-input" [(colorPicker)]="color" [style.background]="color">
@@ -47,7 +47,6 @@
 </ion-content>
 
 <!-- camera icon -->
-<!-- show max input -->
 <!-- alert icon -->
 <!-- image circle style -->
 <!-- make image size bigger -->
