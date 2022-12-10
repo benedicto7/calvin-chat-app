@@ -1,6 +1,3 @@
-# Calvin Chat App
-Calvin University CS336 Final Project
-
 # Firebase Hosting URL
 https://calvinknightchats.web.app/login
 
