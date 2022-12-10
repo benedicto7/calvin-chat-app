@@ -8,7 +8,10 @@
 </ion-header>
 
 <ion-content class="ion-padding" color="light">
-  <ion-img (click)="changeImage()" id="profile-image" [src]="imageUrl"></ion-img>
+  <div class="image">
+    <ion-img (click)="changeImage()" id="profile-image" [src]="imageUrl"></ion-img>
+    <ion-icon color="success" slot="end" class="camera-icon" name="camera-sharp"></ion-icon>
+  </div>
 
   <hr color="tint">
 
@@ -23,10 +26,16 @@
 
   <hr color="tint">
 
-  <!-- Edit Name Color @Input? -->
+  <!-- Edit Name Color -->
   <div class="color">
-    <p id="color-name">Change Name Color</p>
-    <input id="color-input" [(colorPicker)]="color" [style.background]="color">
+    <!-- Encapsulated inside label, so that at every click or color change, editColor() is called -->
+    <label>
+      <div class="color-title">
+        <p id="color-name">Change Name Color</p>
+        <ion-icon color="success" class="color-palette-icon" slot="end" name="color-palette-sharp"></ion-icon>
+      </div>
+      <input id="color-input" [(colorPicker)]="color" [style.background]="color" (click)="editColor()">
+    </label>
   </div>
 
   <hr color="tint">
@@ -46,7 +55,4 @@
   </ion-popover>
 </ion-content>
 
-<!-- camera icon -->
 <!-- alert icon -->
-<!-- image circle style -->
-<!-- make image size bigger -->
