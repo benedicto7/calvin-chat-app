@@ -1,4 +1,4 @@
-# Firebase Hosting URL
+# PWA URL
 https://calvinknightchats.web.app/login
 
 # Vision Statement
