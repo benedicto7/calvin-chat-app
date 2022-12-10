@@ -40,6 +40,14 @@
         <ion-icon slot="start" name="chevron-forward-sharp" *ngIf="cs336_icon"></ion-icon>
         CS336
       </ion-button>
+      <ion-button color="dark" expand="block" [fill]="classroom_button" (click)="setCourse('classroom')">
+        <ion-icon slot="start" name="chevron-forward-sharp" *ngIf="classroom_icon"></ion-icon>
+        Classroom
+      </ion-button>
+      <ion-button color="dark" expand="block" [fill]="toilet_button" (click)="setCourse('toilet')">
+        <ion-icon slot="start" name="chevron-forward-sharp" *ngIf="toilet_icon"></ion-icon>
+        Toilet
+      </ion-button>
     </ion-menu-toggle>
   </ion-content>
 </ion-menu>
@@ -56,11 +64,11 @@
   </ion-header>
 
   <!-- Chats -->
-  <ion-content color="light" class="ion-padding" id="myContent" [scrollEvents]="true">
+  <ion-content color="light" class="ion-padding" id="chat-content" [scrollEvents]="true">
     <div class="chat-box" *ngFor="let chat of chats">
       <div class="chat">
         <ion-avatar>
-          <ion-img src="../../assets/image.jpg" alt="nothing" id="profile-image"></ion-img>
+          <ion-img [src]="chat.imageUrl" alt="nothing" id="profile-image"></ion-img>
         </ion-avatar>
         <p id="name" [style.color]="chat.color">{{chat.name}}</p>
         <p id="date">{{chat.timestamp.toDate() | date: "d/MM/yyyy H:mm"}}</p>

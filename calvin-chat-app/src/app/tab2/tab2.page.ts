@@ -8,8 +8,6 @@ import { AuthService } from '../services/auth.service';
 import { ImageService } from '../services/image.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 
-// TODO: Set color
-
 interface User {
   name: string;
   imageUrl: string;
@@ -29,20 +27,20 @@ export class Tab2Page {
     private image: ImageService,
     private db: AngularFirestore,
   ) {
-    // TODO: doesn't update
     // Get the current user name, default imageUrl, and color from their uid in firestore
     const userUid = this.auth.getCurrentUserUid();
-    console.log(userUid);
+    console.log(`UserUid: ${userUid}`);
 
     this.db.doc<User>(`/users/${userUid}`).valueChanges().subscribe((result) => {
       if (result) {
         this.name = result.name;
+        this.new_name = this.name;
         this.imageUrl = result.imageUrl;
         this.color = result.color;
 
         console.log(`User name: ${this.name}`);
-        console.log(`User default imageUrl: ${this.imageUrl}`);
-        console.log(`User default color: ${this.color}`);
+        console.log(`User imageUrl: ${this.imageUrl}`);
+        console.log(`User color: ${this.color}`);
       }
     })
   }
@@ -53,36 +51,42 @@ export class Tab2Page {
   public new_name: string = this.name;
   public color: string = "";
 
+  // Allows the user to change their image
+  changeImage = async () => {
+    // Upload the user image to cloud storage and firestore
+    const imageURL = await this.image.changeImage();
+
+    // Sets the src image using the imageUrl from firestore
+    this.imageUrl = imageURL;
+  }
+
   // Closes the popover when user clicks button or enter
   async editName(action: boolean): Promise<void> {
     if (action === true) {
       this.name = this.new_name;
 
-      // TODO: Update the user name in firestore
+      // Update the user name only in firestore
+      const userUid = this.auth.getCurrentUserUid();
+      this.db.doc<User>(`/users/${userUid}`).update({
+        name: this.name,
+      });
 
       await this.popoverController.dismiss();
     }
     else {
       await this.popoverController.dismiss();
     }
+  }
 
-    // this.name = (action === true) ? this.new_name : this.name;
-    // await this.popoverController.dismiss();
+  editColor(): void {
+    const userUid = this.auth.getCurrentUserUid();
+    this.db.doc<User>(`/users/${userUid}`).update({
+      color: this.color,
+    })
   }
 
   // Let the user logout from the application
   logout(): void {
     this.auth.logoutUser();
-  }
-
-  // Allows the user to change their image
-  changeImage = async () => {
-    // Upload the user image to firestore and cloud storage
-    const imageURL = await this.image.changeImage();
-
-    // TODO: Update the user image in firestore
-
-    // Sets the src image using the imageUrl from firestore
-    this.imageUrl = imageURL;
   }
 }

@@ -73,6 +73,8 @@ export class LoginPage implements OnInit {
       });
       alert.present();
     }
+
+    console.log("❤");
   }
 
   async createAccount(): Promise<void> {
@@ -101,6 +103,8 @@ export class LoginPage implements OnInit {
       });
       alert.present();
     }
+
+    console.log("❤");
   }
 
   async resetPassword(): Promise<void> {

@@ -24,17 +24,16 @@ ion-menu {
       display: flex;
       justify-content: space-between;
 
-      /* Tag */
+      /* The style for the tag */
       #profile-image {
-        // width: 20%;
-        // height: 20%;
         border-radius: 50%;
         border-color: #141414;
         border-style: solid;
         border-width: thin;
+
       }
 
-      /* Image */
+      /* The style for the image of the tag */
       #profile-image::part(image) {
         border-radius: 50%;
       }
@@ -42,7 +41,7 @@ ion-menu {
       #name {
         font-weight: bold;
         font-size: small;
-        margin-right: 20%;
+        margin-right: 18%;
         align-self: center;
       }
 
@@ -50,12 +49,13 @@ ion-menu {
         font-weight: lighter;
         font-size: xx-small;
         align-self: center;
+        text-align: right;
       }
     }
 
     #message {
       font-weight: lighter;
-      font-size: small;
+      font-size: medium;
     }
   }
 
