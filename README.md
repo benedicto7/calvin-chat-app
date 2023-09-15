@@ -10,3 +10,8 @@ For students who have run into a wall, looking to find their questions answered,
 
 # Team Member
 Benedicto Elpidius
+
+# Pictures of App (SS)
+![WhatsApp 图像 2023-09-15 于 15 14 7](https://github.com/benedicto7/calvin-chat-app/assets/90052277/f28d94c7-cf07-49ee-a3ab-a3c02eb42c76)
+
+![WhatsApp 图像 2023-09-15 于 15 14 17](https://github.com/benedicto7/calvin-chat-app/assets/90052277/06a96c75-c399-4730-97d3-fbed1c7f9232)
